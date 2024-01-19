@@ -24,7 +24,14 @@ main_kb = ReplyKeyboardMarkup(
     one_time_keyboard = True, # клава скрывается после первого использования
     input_field_placeholder = "Выдерите действие с меню", # текст в меню для активации клавы
     selective = True, # для чатов, клава активируется только у того кто ее вызвал???
+)
 
-
-
+links_kb = InlineKeyboardMarkup(
+    inline_keyboard = [
+        [
+            InlineKeyboardButton(text = 'Instagram', url = "https://www.instagram.com/chemodan_blog/"),
+            InlineKeyboardButton(text = 'Youtube', url = "https://www.youtube.com/channel/UCWFU4cESpwDhRS-zQzSorJg"),
+            # InlineKeyboardButton(text = 'Telegram', url = "tg://resolve?dbmain=@CosmoIryna")
+        ]
+    ]
 )
