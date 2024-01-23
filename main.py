@@ -13,9 +13,10 @@ from aiogram.filters import Command, CommandObject
 # CommandObject -- что бы без машины состояний реализовать задавание диапазона
 
 from aiogram.types import Message
+
 import asyncio  # позволяет писать ассинхронные функции
 
-token = '6376558301:AAHa1nHkRWa-KWcAoMzaZ-xFq8FiSh8Y1M0'
+token = '6665446931:AAF2haWZeMD8BZdiIR0eJWRZQTVIdGfWFk8'
 
 bot = Bot(token, parse_mode = "HTML")
 dp = Dispatcher()
@@ -25,7 +26,7 @@ dp = Dispatcher()
 async def start(message: Message):
     await message.answer(f"Привет, <b>{message.from_user.first_name} !!!!</b>")
 
-@dp.message(Command(commands = ['rn', 'rando'])) # rn 1-100  мы хотим так задавать диапазон
+@dp.message(Command(commands = ['rn', 'rando'])) # rn 1-100  мы хотим так задавать диапазон. без разницы /rn или /rando
 async def get_random_number(message: Message, command: CommandObject):     # передавать именно название command
     #await message.answer(command.args)  # /rn 55555  -- вернет 55555
     a, b = [int(n) for n in command.args.split('-')] # вернет например [1, 100]
@@ -51,7 +52,7 @@ async def main():
     # отправленные сообщения во время выключеного бота не будут приходить
     await bot.delete_webhook(drop_pending_updates = True)
 
-    #запускаем бота
+    #запускаем бота - что бы он работал постоянно
     await dp.start_polling(bot)
 
 if __name__ == '__main__':
