@@ -7,7 +7,10 @@ from aiogram.types import (
     KeyboardButtonPollType,   #для создания викторины (quiz) или голосования(regular)
 )
 # для работы с Билдером
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
+
+# для работы со смайликами
+from aiogram.filters.callback_data import CallbackData
 
 #основная клавиатура для команды start
 main_kb = ReplyKeyboardMarkup(
@@ -61,6 +64,23 @@ spec_kb = ReplyKeyboardMarkup(
     ],
     resize_keyboard = True
 )
+
+# создаем пагинацию  -- реализуем тут фабрику колбэков
+class Pagination(CallbackData, prefix="page"):   # унаследовались от CallbackData
+    action: str     # действие
+    page: int      # номер страницы
+
+# билдер для пагинации
+def paginator(page:int = 0):
+    builder = InlineKeyboardBuilder()
+    builder.row(
+        InlineKeyboardButton(text = "⬅", callback_data = Pagination(action="prev", page=page).pack()),
+        InlineKeyboardButton(text = "➡", callback_data = Pagination(action="next", page=page).pack()),
+        width = 2  # сколько кнопок в одной строке - по умолчанию - 3
+        # pack() - генерирует строку
+    )
+    return builder.as_markup()
+
 
 # билдэр всегда возращается функцией
 # билдээр калькулятора
