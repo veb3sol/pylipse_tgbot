@@ -2,6 +2,7 @@ from aiogram.types import (
     ReplyKeyboardMarkup,
     KeyboardButton,
     KeyboardButtonPollType,
+    ReplyKeyboardRemove,
 )
 
 #основная клавиатура для команды start
@@ -42,3 +43,5 @@ spec = ReplyKeyboardMarkup(
     ],
     resize_keyboard = True
 )
+
+rmk = ReplyKeyboardRemove()
