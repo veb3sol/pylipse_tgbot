@@ -12,3 +12,11 @@ links = InlineKeyboardMarkup(
         ]
     ]
 )
+
+sub_channel = InlineKeyboardMarkup(
+    inline_keyboard = [
+        [
+            InlineKeyboardButton(text = "Подписаться", url = 'https://t.me/Beauty_Kyiv_Sity')
+        ]
+    ]
+)

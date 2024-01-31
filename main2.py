@@ -7,6 +7,8 @@ from callbacks import pagination
 
 from config_reader import config
 
+from middlewares.check_sub import CheckSubscription
+
 # token = '6665446931:AAF2haWZeMD8BZdiIR0eJWRZQTVIdGfWFk8'
 # token = '6376558301:AAHa1nHkRWa-KWcAoMzaZ-xFq8FiSh8Y1M0'
 
@@ -16,6 +18,8 @@ from config_reader import config
 async def main():
     bot = Bot(config.bot_token.get_secret_value(), parse_mode = "HTML")
     dp = Dispatcher()
+
+    dp.message.middleware(CheckSubscription())  # вызываем до роутов
 
     # указываем все роутеры -- очень важен порядок указания
     dp.include_routers(
